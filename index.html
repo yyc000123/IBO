@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>年度選單</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+#menu {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+}
+
+button {
+    padding: 10px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+<h2>生物奧林匹亞初賽試題</h2>
+
+<div id="menu"></div>
+
+<script>
+const menu = document.getElementById("menu");
+
+const years = ["1999A", "1999B", "2000A", "2000B"];
+for (let y = 2001; y <= 2025; y++) {                                             /*the last year*/
+    years.push(String(y));
+}
+
+// 產生按鈕
+years.forEach(item => {
+    const btn = document.createElement("button");
+    btn.textContent = item;
+    btn.onclick = () => {
+        // 跳轉到另一個畫面
+        window.location.href = `${item}.html`;
+    };
+    menu.appendChild(btn);
+});
+</script>
+
+</body>
+</html>
