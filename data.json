@@ -1,0 +1,5 @@
+{
+  "correct": ["A", "C"],
+  "wrong": ["B", "D"],
+  "optional": ["E"]
+}
