@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title></title>
 
+
+
 <style>
 
 #title {
@@ -78,13 +80,20 @@ const multi_or_not = [0, 1, 0, 1, 1] ;                                          
 
 const urls = [] ;
 
-// 產生按鈕
+let pos = 0 ;
+
+
+
 years.forEach(item => {
     const btn = document.createElement("button");
     btn.textContent = item;
     btn.onclick = () => {
-	for(let pos=0 ; pos<years.length ; pos++){
-	    if(years[pos]==item) showExam(pos, item) ;
+	for(let i=0 ; i<years.length ; i++){
+	    if(years[i]==item){
+		pos = i ;
+		showExam() ;
+		break ;
+	    }
 	}
     };
     menu.appendChild(btn);
@@ -92,9 +101,15 @@ years.forEach(item => {
 
 
 
-function showExam(pos, year) {
+function showExam() {
+
+
+
+    /*clear*/
     document.getElementById("title").style.display = "none";
     document.getElementById("menu").style.display = "none";
+
+    /*set the answering page*/
     document.getElementById("viewer").innerHTML = `
     <style>
     .container {
@@ -120,7 +135,7 @@ function showExam(pos, year) {
 
     <div class="container">
         <div class="left">
-            <embed src="https://cses.fi/book/book.pdf"
+            <embed src="https://cses.fi/book/book.pdf"                                                          /*${urls[pos]}*/
                 type="application/pdf"
                 width="100%"
                 height="100%">
@@ -129,7 +144,7 @@ function showExam(pos, year) {
         <div class="right">
             <h2>作答區</h2>
 
-	    <div id="showQuestions()"></div>
+	    <div id="showQuestions"></div>
 
 	    <p></p>
 
@@ -139,12 +154,118 @@ function showExam(pos, year) {
         </div>
     </div>
     `;
+
+
+
+    /*showQuestions*/
+    let options = [] ;
+
+    for(let i=0 ; i<5 ; i++){                                                                                        /*total_options[pos]*/
+        options.push(String.fromCharCode('A'.charCodeAt(0) + i)) ;
+    }
+
+    const showQuestions_container = document.getElementById("showQuestions") ;
+
+    for(let i=1 ; i<=2 ; i++){                                                                                       /*total_question[pos]*/
+        const title = document.createElement("p");
+        title.textContent = `第 ${i} 題`;
+        showQuestions_container.appendChild(title);
+
+        options.forEach(opt => {
+            const label = document.createElement("label");
+            label.innerHTML = `
+                <input type="checkbox" name="q_${i}" value="${opt}">
+                (${opt})
+            `;
+            showQuestions_container.appendChild(label);
+            showQuestions_container.appendChild(document.createElement("br"));
+        });
+    }
+
+
+
+    /*check the answer*/
+function checkAnswer() {
+
+    let score = 0;
+
+    fetch("data.json")
+        .then(res => res.json())
+        .then(data => {
+            const result = document.getElementById("result") ;
+	    result.innerHTML = "" ;
+
+	    const multi = data.multi;
+
+            for (const qid in multi) {
+                const q = multi[qid];
+
+                const must = q.must.join(" ");
+                const optional = q.optional.length ? `（${q.optional.join(" ")}）` : "" ;
+
+            out.innerHTML += `
+                <div class="section">
+                    <b>題號 ${qid}</b><br>
+                    ${must} ${optional}
+                </div>
+            `;
+        })
+        .catch(err => {
+            document.getElementById("output").textContent = "讀取JSON答案檔案失敗";
+            console.error(err);
+        });
+
+
+/*
+    for (let q = 1; q <= 2; q++) {                                                                                    // total_question[pos]
+        const rule = answers.multi[q];
+
+        if (!rule) continue;
+
+        const selected = Array.from(
+            document.querySelectorAll(`input[name="q_${q}"]:checked`)
+        ).map(cb => cb.value);
+
+	const temp = isCorrect(selected, rule) ;
+
+	if(temp==5) score+=2 ;                                                                                          // the score cnt rule
+	else if(temp==4) score+=1.2 ;
+	else if(temp==3) score+=0.4 ;
+
+	let optional = "" ;
+
+	for(let i=0 ; i<total ; i++){
+ 	    let ch = String.fromCharCode('A'.charCodeAt(0) + i) ;
+	    if(!rule.must.includes(ch) && !rule.mustNot.includes(ch)) optional+=ch ;
+	}
+
+	if(temp==5) document.getElementById("result").innerHTML += `第${q}題：正確✅<br>` ;
+	else document.getElementById("result").innerHTML += `第${q}題：錯誤❌<br>`;
+
+	document.getElementById("result").innerHTML += `正確答案：${rule.must.join("")}` ;
+
+	if(optional.length!=0) document.getElementById("result").innerHTML += `(${optional})` ;
+
+	document.getElementById("result").innerHTML += `<br><br>` ;
+
+    }
+*/
+    document.getElementById("result").innerHTML += `👍👍👍分數：${score} / ${120}👍👍👍<br><br>` ;
+
+    document.getElementById("result").innerHTML += `
+    <a href="https://tpmso.org/ibo/index.php/first-round-selection/" target="_blank">詳解</a><br>`;                         /*the url of the detailed explanation*/
+
+    // 鎖定所有選項
+    document
+        .querySelectorAll('input[type="checkbox"]')
+        .forEach(i => i.disabled = true);
+
+    // 鎖定按鈕
+    document.querySelector("button").disabled = true;
 }
 
 
 
-// code here
-function showQuestions(){
 }
 
 
