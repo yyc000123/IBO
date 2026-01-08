@@ -186,16 +186,13 @@ async function checkAnswer(btn) {
 
     let score = 0;
 
-	console.log("press the button and checking answer") ; /*testing*/
-
 	try {
 		const res = await fetch("data.json");
     	const data = await res.json();
-    	console.log("資料讀取完成", data);
 
     	// code here
 	} catch (err) {
-		console.error("讀取失敗", err) ;
+		console.error("Error when checking answer: ", err) ;
 	}
 /*
     fetch("data.json")
@@ -271,7 +268,6 @@ async function checkAnswer(btn) {
         .forEach(i => i.disabled = true);
 
     // 鎖定按鈕
-	console.log("clicked");  /*testing*/
 	btn.disabled = true;
 }
 
