@@ -1,5 +1,14 @@
 {
-  "correct": ["A", "C"],
-  "wrong": ["B", "D"],
-  "optional": ["E"]
+  "multi": {
+    "1": {
+      "must": ["A", "C"],
+      "mustNot": ["B", "D", "E"],
+      "optional": []
+    },
+    "2": {
+      "must": ["C", "E"],
+      "mustNot": ["A", "B"],
+      "optional": ["D"]
+    }
+  }
 }
