@@ -182,11 +182,21 @@ function showExam() {
 
 
 /*check the answer*/
-function checkAnswer(btn) {
+async function checkAnswer(btn) {
 
     let score = 0;
 
 	console.log("press the button and checking answer") ; /*testing*/
+
+	try {
+		const res = await fetch("data.json");
+    	const data = await res.json();
+    	console.log("資料讀取完成", data);
+
+    	// code here
+	} catch (err) {
+		console.error("讀取失敗", err) ;
+	}
 /*
     fetch("data.json")
         .then(res => res.json())
