@@ -102,9 +102,6 @@ years.forEach(item => {
 
 
 function showExam() {
-
-
-
     /*clear*/
     document.getElementById("title").style.display = "none";
     document.getElementById("menu").style.display = "none";
@@ -181,10 +178,10 @@ function showExam() {
             showQuestions_container.appendChild(document.createElement("br"));
         });
     }
+}
 
 
-
-    /*check the answer*/
+/*check the answer*/
 function checkAnswer() {
 
     let score = 0;
@@ -265,10 +262,6 @@ function checkAnswer() {
 
     // 鎖定按鈕
     document.querySelector("button").disabled = true;
-}
-
-
-
 }
 
 
