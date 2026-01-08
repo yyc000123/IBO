@@ -189,6 +189,8 @@ function checkAnswer() {
 
     let score = 0;
 
+	console.log("press the button and checking answer") ; /*testing*/
+
     fetch("data.json")
         .then(res => res.json())
         .then(data => {
