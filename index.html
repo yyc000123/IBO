@@ -203,12 +203,13 @@ function checkAnswer() {
                 const must = q.must.join(" ");
                 const optional = q.optional.length ? `（${q.optional.join(" ")}）` : "" ;
 
-            out.innerHTML += `
-                <div class="section">
-                    <b>題號 ${qid}</b><br>
-                    ${must} ${optional}
-                </div>
-            `;
+                out.innerHTML += `
+                	<div class="section">
+	                    <b>題號 ${qid}</b><br>
+	                    ${must} ${optional}
+	                </div>
+	            `;
+			}
         })
         .catch(err => {
             document.getElementById("output").textContent = "讀取JSON答案檔案失敗";
