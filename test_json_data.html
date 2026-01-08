@@ -49,6 +49,14 @@ fetch("data.json")
         document.getElementById("output").textContent = "讀取失敗";
         console.error(err);
     });
+
+document.getElementById("output").innerHTML = `` ;
+
+multiQuestions.forEach(
+    (element) => 
+        document.getElementById("output").innerHTML += `${element}<br>` ;
+) ;
+    
 </script>
 
 </body>
