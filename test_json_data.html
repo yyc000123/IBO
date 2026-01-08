@@ -5,6 +5,8 @@ fetch("data.json")
     const out = document.getElementById("output");
     out.innerHTML = "";
 
+    console.log("fetch success") ; /*testing*/
+
     const multi = data.multi;
 
     for (const qid in multi) {
