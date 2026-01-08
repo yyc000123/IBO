@@ -145,7 +145,7 @@ function showExam() {
 
 	    <p></p>
 
-            <button onclick="checkAnswer()">提交</button>
+            <button onclick="checkAnswer(this)">提交</button>
             <div class="result" id="result"></div>
 
         </div>
@@ -182,7 +182,7 @@ function showExam() {
 
 
 /*check the answer*/
-function checkAnswer() {
+function checkAnswer(btn) {
 
     let score = 0;
 
@@ -261,7 +261,7 @@ function checkAnswer() {
         .forEach(i => i.disabled = true);
 
     // 鎖定按鈕
-    document.querySelector("button").disabled = true;
+	btn.disabled = true;
 }
 
 
