@@ -22,9 +22,14 @@ body {
 <div id="output">載入中...</div>
 
 <script>
+
+let multiQuestions = [] ;
+
 fetch("data.json")
     .then(res => res.json())
     .then(data => {
+        multiQuestions = data.multi ;
+        /*
         const out = document.getElementById("output");
 
         out.innerHTML = `
@@ -38,6 +43,7 @@ fetch("data.json")
                 <b>選擇性：</b> ${data.optional.join(", ")}
             </div>
         `;
+        */
     })
     .catch(err => {
         document.getElementById("output").textContent = "讀取失敗";
