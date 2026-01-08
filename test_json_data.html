@@ -1,32 +1,38 @@
-<script>
-fetch("data.json")
-  .then(res => res.json())
-  .then(data => {
-    const out = document.getElementById("output");
-    out.innerHTML = "";
+<body>
+  <h2>JSON 內容</h2>
+  <div id="output">載入中...</div>
 
-    console.log("fetch success") ; /*testing*/
+  <script>
+    fetch("data.json")
+      .then(res => res.json())
+      .then(data => {
+        const out = document.getElementById("output");
+        out.innerHTML = "";
 
-    const multi = data.multi;
+        console.log("fetch success");
 
-    for (const qid in multi) {
-      const q = multi[qid];
+        const multi = data.multi;
 
-      const must = q.must.join(" ");
-      const optional = q.optional.length
-        ? `（${q.optional.join(" ")}）`
-        : "";
+        for (const qid in multi) {
+          const q = multi[qid];
 
-      out.innerHTML += `
-        <div class="section">
-          <b>題號 ${qid}</b><br>
-          ${must} ${optional}
-        </div>
-      `;
-    }
-  })
-  .catch(err => {
-    document.getElementById("output").textContent = "讀取失敗";
-    console.error(err);
-  });
-</script>
+          const must = q.must.join(" ");
+          const optional = q.optional.length
+            ? `（${q.optional.join(" ")}）`
+            : "";
+
+          out.innerHTML += `
+            <div class="section">
+              <b>題號 ${qid}</b><br>
+              ${must} ${optional}
+            </div>
+          `;
+        }
+      })
+      .catch(err => {
+        const out = document.getElementById("output");
+        if (out) out.textContent = "讀取失敗";
+        console.error(err);
+      });
+  </script>
+</body>
