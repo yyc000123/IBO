@@ -10,10 +10,15 @@ fetch("data.json")
     for (const qid in multi) {
       const q = multi[qid];
 
+      const must = q.must.join(" ");
+      const optional = q.optional.length
+        ? `（${q.optional.join(" ")}）`
+        : "";
+
       out.innerHTML += `
         <div class="section">
           <b>題號 ${qid}</b><br>
-          ${q.must.join(", ")}(${q.optional.join(", ")})
+          ${must} ${optional}
         </div>
       `;
     }
