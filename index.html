@@ -211,7 +211,7 @@ async function checkAnswer(btn) {
     let score = 0;
 
 	try {
-		const res = await fetch("${years[pos]}-answer.json");
+		const res = await fetch(${years[pos]} + "-answer.json");
     	const data = await res.json();
 
 		for(let q=1 ; q<=total_questions[pos] ; q++){
