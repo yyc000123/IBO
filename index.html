@@ -80,6 +80,8 @@ const multi_or_not = [0, 1, 0, 1, 1] ;                                          
 
 const urls = [] ;
 
+const total_points = [] ;                                                                                          /*the total points of the exam*/
+
 let pos = 0 ;
 
 
@@ -163,7 +165,7 @@ function showExam() {
 
     const showQuestions_container = document.getElementById("showQuestions") ;
 
-    for(let i=1 ; i<=2 ; i++){                                                                                       /*total_question[pos]*/
+    for(let i=1 ; i<=2 ; i++){                                                                                       /*total_questions[pos]*/
         const title = document.createElement("p");
         title.textContent = `第 ${i} 題`;
         showQuestions_container.appendChild(title);
@@ -191,73 +193,28 @@ async function checkAnswer(btn) {
     	const data = await res.json();
 
     	// code here
+		for(let q=1 ; q<=2 ; q++){                                                                                   /*total_questions[pos]*/
+			const rule = data.multi[q] ;
+			const selected = Array.from(
+				document.querySelectorAll(`input[name="q_${q}"]:checked`)
+			).map(cb => cb.value);
+
+			const temp = countScore(selected, rule) ;
+
+			score += temp.score ;
+
+			if(temp.flag) document.getElementById("result").innerHTML += `第${q}題：正確✅<br>` ;
+			else document.getElementById("result").innerHTML += `第${q}題：錯誤❌<br>`;
+			document.getElementById("result").innerHTML += `正確答案：${rule.must.join("")}` ;
+			if(optional.length!=0) document.getElementById("result").innerHTML += `(${optional})` ;
+			document.getElementById("result").innerHTML += `<br><br>` ;
+	
+		}
 	} catch (err) {
 		console.error("Error when checking answer: ", err) ;
 	}
-/*
-    fetch("data.json")
-        .then(res => res.json())
-        .then(data => {
-            const result = document.getElementById("result") ;
-	    result.innerHTML = "" ;
 
-	    const multi = data.multi;
-
-            for (const qid in multi) {
-                const q = multi[qid];
-
-                const must = q.must.join(" ");
-                const optional = q.optional.length ? `（${q.optional.join(" ")}）` : "" ;
-
-                out.innerHTML += `
-                	<div class="section">
-	                    <b>題號 ${qid}</b><br>
-	                    ${must} ${optional}
-	                </div>
-	            `;
-			}
-        })
-        .catch(err => {
-            document.getElementById("output").textContent = "讀取JSON答案檔案失敗";
-            console.error(err);
-        });
-*/
-
-/*
-    for (let q = 1; q <= 2; q++) {                                                                                    // total_question[pos]
-        const rule = answers.multi[q];
-
-        if (!rule) continue;
-
-        const selected = Array.from(
-            document.querySelectorAll(`input[name="q_${q}"]:checked`)
-        ).map(cb => cb.value);
-
-	const temp = isCorrect(selected, rule) ;
-
-	if(temp==5) score+=2 ;                                                                                          // the score cnt rule
-	else if(temp==4) score+=1.2 ;
-	else if(temp==3) score+=0.4 ;
-
-	let optional = "" ;
-
-	for(let i=0 ; i<total ; i++){
- 	    let ch = String.fromCharCode('A'.charCodeAt(0) + i) ;
-	    if(!rule.must.includes(ch) && !rule.mustNot.includes(ch)) optional+=ch ;
-	}
-
-	if(temp==5) document.getElementById("result").innerHTML += `第${q}題：正確✅<br>` ;
-	else document.getElementById("result").innerHTML += `第${q}題：錯誤❌<br>`;
-
-	document.getElementById("result").innerHTML += `正確答案：${rule.must.join("")}` ;
-
-	if(optional.length!=0) document.getElementById("result").innerHTML += `(${optional})` ;
-
-	document.getElementById("result").innerHTML += `<br><br>` ;
-
-    }
-*/
-    document.getElementById("result").innerHTML += `<br>👍👍👍分數：${score} / ${120}👍👍👍<br><br>` ;
+    document.getElementById("result").innerHTML += `<br>👍👍👍分數：${score} / ${120}👍👍👍<br><br>` ;                   /*total_points[pos]*/
 
     document.getElementById("result").innerHTML += `
     <a href="https://tpmso.org/ibo/index.php/first-round-selection/" target="_blank">詳解</a><br>`;                         /*the url of the detailed explanation*/
@@ -269,6 +226,19 @@ async function checkAnswer(btn) {
 
     // 鎖定按鈕
 	btn.disabled = true;
+}
+
+
+
+function countScore(selected, rule){
+	// code here
+	let score = 80;
+    let flag = true;
+
+    return {
+        score: score,
+    	flag: flag
+    };
 }
 
 
