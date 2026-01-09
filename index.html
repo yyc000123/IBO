@@ -68,21 +68,21 @@ document.getElementById("title").innerHTML = `<h1>生物奧林匹亞初賽試題
 const menu = document.getElementById("menu");
 
 const years = ["1999A", "1999B", "2000A", "2000B"];
-for (let y = 2001; y <= 2025; y++) {                                                                               /*the last year*/
+for (let y = 2001; y <= 2025; y++) {                                                                                        /*the last year*/
     years.push(String(y));
 }
 
-const total_questions = [80, 40, 80, 40, 80] ;                                                                     /*the numbers of the questions*/
+const total_questions = [60] ;                                                                                              /*the numbers of the questions*/
 
-const total_options = [4, 4, 5, 5, 5] ;                                                                            /*the numbers of the options*/
+const total_options = [5] ;                                                                                                 /*the numbers of the options*/
 
-const multi_or_not = [0, 1, 0, 1, 1] ;                                                                             /*單選題0多選題1*/
+const multi_or_not = [1] ;                                                                                                  /*單選題0多選題1*/
 
-const urls = [] ;
+const urls = [https://tpmso.org/ibo/wp-content/uploads/2025/09/2025_1st_exam-.pdf] ;                                        /*the url of pdf*/
 
-const total_points = [] ;                                                                                          /*the total scores of the exam*/
+const total_points = [120] ;                                                                                                /*the total scores of the exam*/
 
-const url_of_detailed_explanation = [] ;                                                                           /*the url of the detailed explanation*/
+const url_of_detailed_explanation = [https://tpmso.org/ibo/index.php/first-round-selection/" target="_blank] ;              /*the url of the detailed explanation*/
 
 let pos = 0 ;
 
@@ -94,7 +94,7 @@ years.forEach(item => {
     btn.onclick = () => {
 	for(let i=0 ; i<years.length ; i++){
 	    if(years[i]==item){
-		pos = i ;
+		pos = 0 ;                                                                                                           /*pos = i*/
 		showExam() ;
 		break ;
 	    }
@@ -136,7 +136,7 @@ function showExam() {
 
     <div class="container">
         <div class="left">
-            <embed src="https://cses.fi/book/book.pdf"                                                          /*${urls[pos]}*/
+            <embed src="${urls[pos]}"
                 type="application/pdf"
                 width="100%"
                 height="100%">
@@ -161,13 +161,13 @@ function showExam() {
     /*showQuestions*/
     let options = [] ;
 
-    for(let i=0 ; i<5 ; i++){                                                                                        /*total_options[pos]*/
+    for(let i=0 ; i<total_options[pos] ; i++){
         options.push(String.fromCharCode('A'.charCodeAt(0) + i)) ;
     }
 
     const showQuestions_container = document.getElementById("showQuestions") ;
 
-    for(let i=1 ; i<=2 ; i++){                                                                                       /*total_questions[pos]*/
+    for(let i=1 ; i<=total_questions[pos] ; i++){
         const title = document.createElement("p");
         title.textContent = `第 ${i} 題`;
         showQuestions_container.appendChild(title);
@@ -195,8 +195,13 @@ async function checkAnswer(btn) {
     	const data = await res.json();
 
     	// code here
-		for(let q=1 ; q<=2 ; q++){                                                                                   /*total_questions[pos]*/
+		for(let q=1 ; q<=total_question[pos] ; q++){
 			const rule = data.multi[q] ;
+
+			if(!rule){
+				console.log("question ${q} rule can not be find") ;
+				continue ;
+			}
 				
 			const selected = Array.from(
 				document.querySelectorAll(`input[name="q_${q}"]:checked`)
@@ -217,10 +222,10 @@ async function checkAnswer(btn) {
 		console.error("Error when checking answer: ", err) ;
 	}
 
-    document.getElementById("result").innerHTML += `👍👍👍分數：${score} / ${120}👍👍👍<br><br>` ;                   /*total_points[pos]*/
+    document.getElementById("result").innerHTML += `👍👍👍分數：${score} / ${total_points[pos]}👍👍👍<br><br>` ;
 
     document.getElementById("result").innerHTML += `
-    <a href="https://tpmso.org/ibo/index.php/first-round-selection/" target="_blank">詳解</a><br>`;                         /*url_of_detailed_explanation[pos]*/
+    <a href="${url_of_detailed_explanation[pos]}" target="_blank">詳解</a><br>`;
 
     // 鎖定所有選項
     document
@@ -254,8 +259,8 @@ function countScore(selected, rule){
 
 	if(cnt) flag=false ;
 
-	cnt = 5 - cnt ;                                                                                                           /*total_options[pos]*/
-
+	cnt = total_options[pos] - cnt ;
+																													/*the rule of counting score*/
 	if(cnt==5) score = 2 ;
 	else if(cnt==4) score = 1.2 ;
 	else if(cnt==3) score = 0.4 ;
