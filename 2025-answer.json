@@ -1,14 +1,304 @@
 {
   "multi": {
     "1": {
-      "must": ["A", "C"],
-      "mustNot": ["B", "D", "E"],
+      "must": ["B", "C", "D"],
+      "mustNot": ["A", "E"],
       "optional": []
     },
     "2": {
+      "must": ["B", "C", "E"],
+      "mustNot": ["A", "D"],
+      "optional": []
+    },
+    "3": {
+      "must": ["B", "C", "D", "E"],
+      "mustNot": ["A"],
+      "optional": []
+    },
+    "4": {
+      "must": ["A", "E"],
+      "mustNot": ["B", "C", "D"],
+      "optional": []
+    },
+    "5": {
+      "must": ["A", "C", "E"],
+      "mustNot": ["B", "D"],
+      "optional": []
+    },
+    "6": {
+      "must": ["C"],
+      "mustNot": ["A", "B", "D", "E"],
+      "optional": []
+    },
+    "7": {
+      "must": ["B"],
+      "mustNot": ["A", "C", "D"],
+      "optional": ["E"]
+    },
+    "8": {
+      "must": ["B"],
+      "mustNot": ["A", "C", "D", "E"],
+      "optional": []
+    },
+    "9": {
+      "must": ["A", "B", "E"],
+      "mustNot": ["C", "D"],
+      "optional": []
+    },
+    "10": {
+      "must": ["D"],
+      "mustNot": ["A", "B", "C", "E"],
+      "optional": []
+    },
+    "11": {
+      "must": ["B", "C", "D"],
+      "mustNot": ["A", "E"],
+      "optional": []
+    },
+    "12": {
+      "must": ["A", "C", "D", "E"],
+      "mustNot": ["B"],
+      "optional": []
+    },
+    "13": {
+      "must": ["A", "E"],
+      "mustNot": ["B", "C", "D"],
+      "optional": []
+    },
+    "14": {
+      "must": ["B", "C", "D"],
+      "mustNot": ["A", "E"],
+      "optional": []
+    },
+    "15": {
+      "must": ["A", "D", "E"],
+      "mustNot": ["B", "C"],
+      "optional": []
+    },
+    "16": {
+      "must": ["B", "D", "E"],
+      "mustNot": ["A", "C"],
+      "optional": []
+    },
+    "17": {
+      "must": ["C"],
+      "mustNot": ["A", "B", "D", "E"],
+      "optional": []
+    },
+    "18": {
+      "must": ["A", "E"],
+      "mustNot": ["B", "C", "D"],
+      "optional": []
+    },
+    "19": {
+      "must": ["B", "E"],
+      "mustNot": ["A", "C", "D"],
+      "optional": []
+    },
+    "20": {
+      "must": ["A", "D"],
+      "mustNot": ["B", "C", "E"],
+      "optional": []
+    },
+    "21": {
+      "must": ["A", "C", "D"],
+      "mustNot": ["B", "E"],
+      "optional": []
+    },
+    "22": {
+      "must": ["B", "C", "E"],
+      "mustNot": ["A", "D"],
+      "optional": []
+    },
+    "23": {
+      "must": ["A", "B", "C", "D", "E"],
+      "mustNot": [],
+      "optional": []
+    },
+    "24": {
+      "must": ["B", "C", "D", "E"],
+      "mustNot": ["A"],
+      "optional": []
+    },
+    "25": {
+      "must": ["C"],
+      "mustNot": ["A", "B", "D", "E"],
+      "optional": []
+    },
+    "26": {
+      "must": ["C", "D"],
+      "mustNot": ["A", "B", "E"],
+      "optional": []
+    },
+    "27": {
       "must": ["C", "E"],
-      "mustNot": ["A", "B"],
+      "mustNot": ["A", "B", "D"],
+      "optional": []
+    },
+    "28": {
+      "must": ["D"],
+      "mustNot": ["A", "B", "C", "E"],
+      "optional": []
+    },
+    "29": {
+      "must": ["A", "D", "E"],
+      "mustNot": ["B", "C"],
+      "optional": []
+    },
+    "30": {
+      "must": ["B", "E"],
+      "mustNot": ["A", "C", "D"],
+      "optional": []
+    },
+    "31": {
+      "must": ["B", "C", "E"],
+      "mustNot": ["A", "D"],
+      "optional": []
+    },
+    "32": {
+      "must": ["C", "E"],
+      "mustNot": ["A", "B", "D"],
+      "optional": []
+    },
+    "33": {
+      "must": ["D", "E"],
+      "mustNot": ["A", "B", "C"],
+      "optional": []
+    },
+    "34": {
+      "must": ["B", "C"],
+      "mustNot": ["A", "D", "E"],
+      "optional": []
+    },
+    "35": {
+      "must": ["B", "C"],
+      "mustNot": ["A", "D", "E"],
+      "optional": []
+    },
+    "36": {
+      "must": ["B", "D", "E"],
+      "mustNot": ["A", "C"],
+      "optional": []
+    },
+    "37": {
+      "must": ["A", "D"],
+      "mustNot": ["B", "C", "E"],
+      "optional": []
+    },
+    "38": {
+      "must": ["A", "C", "E"],
+      "mustNot": ["B", "D"],
+      "optional": []
+    },
+    "39": {
+      "must": ["B"],
+      "mustNot": ["A", "C", "D", "E"],
+      "optional": []
+    },
+    "40": {
+      "must": ["B"],
+      "mustNot": ["A", "C", "D", "E"],
+      "optional": []
+    },
+    "41": {
+      "must": ["A", "B", "C", "D", "E"],
+      "mustNot": [],
+      "optional": []
+    },
+    "42": {
+      "must": ["A", "B", "D"],
+      "mustNot": ["C", "E"],
+      "optional": []
+    },
+    "43": {
+      "must": ["A", "D"],
+      "mustNot": ["B", "E"],
+      "optional": ["C"]
+    },
+    "44": {
+      "must": ["C", "E"],
+      "mustNot": ["A", "B", "D"],
+      "optional": []
+    },
+    "45": {
+      "must": ["A", "E"],
+      "mustNot": ["B", "C"],
       "optional": ["D"]
+    },
+    "46": {
+      "must": ["A", "B", "E"],
+      "mustNot": ["C", "D"],
+      "optional": []
+    },
+    "47": {
+      "must": ["B", "D", "E"],
+      "mustNot": ["A", "C"],
+      "optional": []
+    },
+    "48": {
+      "must": ["A", "C", "D"],
+      "mustNot": ["B", "E"],
+      "optional": []
+    },
+    "49": {
+      "must": ["B", "C", "D"],
+      "mustNot": ["A", "E"],
+      "optional": []
+    },
+    "50": {
+      "must": ["A", "B", "C", "E"],
+      "mustNot": ["D"],
+      "optional": []
+    },
+    "51": {
+      "must": ["A", "B", "D"],
+      "mustNot": ["C", "E"],
+      "optional": []
+    },
+    "52": {
+      "must": ["C", "D"],
+      "mustNot": ["A", "B", "E"],
+      "optional": []
+    },
+    "53": {
+      "must": ["B", "C"],
+      "mustNot": ["A", "D", "E"],
+      "optional": []
+    },
+    "54": {
+      "must": ["A", "C", "D"],
+      "mustNot": ["B", "E"],
+      "optional": []
+    },
+    "55": {
+      "must": ["A", "D", "E"],
+      "mustNot": ["B", "C"],
+      "optional": []
+    },
+    "56": {
+      "must": ["A", "C", "D"],
+      "mustNot": ["B", "E"],
+      "optional": []
+    },
+    "57": {
+      "must": ["A", "E"],
+      "mustNot": ["B", "C", "D"],
+      "optional": []
+    },
+    "58": {
+      "must": ["A", "C", "E"],
+      "mustNot": ["B", "D"],
+      "optional": []
+    },
+    "59": {
+      "must": ["A", "B", "D", "E"],
+      "mustNot": ["C"],
+      "optional": []
+    },
+    "60": {
+      "must": ["B", "D", "E"],
+      "mustNot": ["A", "C"],
+      "optional": []
     }
   }
 }
