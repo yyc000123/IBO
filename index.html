@@ -35,7 +35,7 @@ html, body {
 }
 
 #viewer {
-	display: none;                             /*testing*/
+	display: none;
     width: 100vw;
     height: 100vh;
     button {
@@ -79,11 +79,11 @@ const total_options = [5] ;                                                     
 
 const multi_or_not = [1] ;                                                                                                  /*單選題0多選題1*/
 
-const urls = ["https://tpmso.org/ibo/wp-content/uploads/2025/09/2025_1st_exam-.pdf"] ;                                        /*the url of pdf*/
+const urls = ["https://tpmso.org/ibo/wp-content/uploads/2025/09/2025_1st_exam-.pdf"] ;                                      /*the url of pdf*/
 
 const total_points = [120] ;                                                                                                /*the total scores of the exam*/
 
-const url_of_detailed_explanation = ["https://tpmso.org/ibo/index.php/first-round-selection/"] ;              /*the url of the detailed explanation*/
+const url_of_detailed_explanation = ["https://tpmso.org/ibo/index.php/first-round-selection/"] ;                            /*the url of the detailed explanation*/
 
 let pos = 0 ;
 
@@ -110,7 +110,7 @@ function showExam() {
     /*clear*/
     document.getElementById("title").style.display = "none";
     document.getElementById("menu").style.display = "none";
-	document.getElementById("viewer").style.display = "block";                        /*testing*/
+	document.getElementById("viewer").style.display = "block";
 
     /*set the answering page*/
     document.getElementById("viewer").innerHTML = `
@@ -262,7 +262,7 @@ function countScore(selected, rule){
 	if(cnt) flag=false ;
 
 	cnt = total_options[pos] - cnt ;
-																													/*the rule of counting score*/
+																												          	/*the rule of counting score*/
 	if(cnt==5) score = 2 ;
 	else if(cnt==4) score = 1.2 ;
 	else if(cnt==3) score = 0.4 ;
