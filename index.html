@@ -67,12 +67,14 @@ html, body {
 document.getElementById("title").innerHTML = `<h1>生物奧林匹亞初賽試題</h1>` ;
 
 const menu = document.getElementById("menu");
-
+/*
 const years = ["1999A", "1999B", "2000A", "2000B"];
 for (let y = 2001; y <= 2025; y++) {                                                                                        /*the last year*/
     years.push(String(y));
 }
-
+*/
+const years = ["1999A", "2025"] ;
+	
 const total_questions = [80, 60] ;                                                                                          /*the numbers of the questions*/
 
 const total_options = [4, 5] ;                                                                                              /*the numbers of the options*/
@@ -101,8 +103,7 @@ years.forEach(item => {
     btn.onclick = () => {
 	for(let i=0 ; i<years.length ; i++){
 	    if(years[i]==item){
-		if(i) pos=1 ;                                                                                                           /*pos = i*/
-		else pos=0 ;
+		pos = i ;
 		showExam() ;
 		break ;
 	    }
@@ -197,7 +198,7 @@ async function checkAnswer(btn) {
     let score = 0;
 
 	try {
-		const res = await fetch("2025-answer.json");
+		const res = await fetch("${years[pos]}-answer.json");
     	const data = await res.json();
 
 		for(let q=1 ; q<=total_questions[pos] ; q++){
