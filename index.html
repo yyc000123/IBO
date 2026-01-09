@@ -149,7 +149,7 @@ function showExam() {
 
 	    <p></p>
 
-            <button onclick="checkAnswer(this)">提交</button>
+            <button onclick="checkAnswer(this)">提交</button><br>
             <div class="result" id="result"></div>
 
         </div>
@@ -217,7 +217,7 @@ async function checkAnswer(btn) {
 		console.error("Error when checking answer: ", err) ;
 	}
 
-    document.getElementById("result").innerHTML += `<br>👍👍👍分數：${score} / ${120}👍👍👍<br><br>` ;                   /*total_points[pos]*/
+    document.getElementById("result").innerHTML += `👍👍👍分數：${score} / ${120}👍👍👍<br><br>` ;                   /*total_points[pos]*/
 
     document.getElementById("result").innerHTML += `
     <a href="https://tpmso.org/ibo/index.php/first-round-selection/" target="_blank">詳解</a><br>`;                         /*url_of_detailed_explanation[pos]*/
