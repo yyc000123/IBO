@@ -237,8 +237,6 @@ async function checkAnswer(btn) {
 
 
 function countScore(selected, rule, question_number){
-
-	console.log("counting score") ;                                                                                 /*testing*/
 	
 	if(selected.length==0){
 		return {
@@ -261,10 +259,10 @@ function countScore(selected, rule, question_number){
 	if(cnt) flag=false ;
 
 	cnt = total_options[pos] - cnt ;
+	
 																												          	/*the rule of counting score*/
 
 	if(multi_or_not[pos]){
-		console.log("multi") ;                                                                                    /*testing*/
 		if(cnt==total_options[pos]) score = 2 ;
 		else if(cnt==total_options[pos]-1) score = 1.2 ;
 		else if(cnt==total_options[pos]-2) score = 0.4 ;
