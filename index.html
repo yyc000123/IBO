@@ -197,7 +197,7 @@ async function checkAnswer(btn) {
 			const rule = data.multi[q] ;
 
 			if(!rule){
-				console.log("${q} rule can not find") ;
+				console.log("${q} rule can not find") ;                                                              /*testing*/
 				continue ;
 			}
 				
@@ -212,7 +212,7 @@ async function checkAnswer(btn) {
 			if(temp.flag) document.getElementById("result").innerHTML += `第${q}題：正確✅<br>` ;
 			else document.getElementById("result").innerHTML += `第${q}題：錯誤❌<br>`;
 			document.getElementById("result").innerHTML += `正確答案：${rule.must.join("")}` ;
-			if(optional.length!=0) document.getElementById("result").innerHTML += `(${optional})` ;
+			if(rule.optional.length!=0) document.getElementById("result").innerHTML += `(${rule.optional})` ;
 			document.getElementById("result").innerHTML += `<br><br>` ;
 	
 		}
