@@ -99,7 +99,8 @@ years.forEach(item => {
     btn.onclick = () => {
 	for(let i=0 ; i<years.length ; i++){
 	    if(years[i]==item){
-		pos = 0 ;                                                                                                           /*pos = i*/
+		if(i) pos=1 ;                                                                                                           /*pos = i*/
+		else pos=0 ;
 		showExam() ;
 		break ;
 	    }
