@@ -80,7 +80,9 @@ const multi_or_not = [0, 1, 0, 1, 1] ;                                          
 
 const urls = [] ;
 
-const total_points = [] ;                                                                                          /*the total points of the exam*/
+const total_points = [] ;                                                                                          /*the total scores of the exam*/
+
+const url_of_detailed_explanation = [] ;                                                                           /*the url of the detailed explanation*/
 
 let pos = 0 ;
 
@@ -195,11 +197,6 @@ async function checkAnswer(btn) {
     	// code here
 		for(let q=1 ; q<=2 ; q++){                                                                                   /*total_questions[pos]*/
 			const rule = data.multi[q] ;
-
-			if(!rule){
-				console.log("${q} rule can not find") ;                                                              /*testing*/
-				continue ;
-			}
 				
 			const selected = Array.from(
 				document.querySelectorAll(`input[name="q_${q}"]:checked`)
@@ -223,7 +220,7 @@ async function checkAnswer(btn) {
     document.getElementById("result").innerHTML += `<br>👍👍👍分數：${score} / ${120}👍👍👍<br><br>` ;                   /*total_points[pos]*/
 
     document.getElementById("result").innerHTML += `
-    <a href="https://tpmso.org/ibo/index.php/first-round-selection/" target="_blank">詳解</a><br>`;                         /*the url of the detailed explanation*/
+    <a href="https://tpmso.org/ibo/index.php/first-round-selection/" target="_blank">詳解</a><br>`;                         /*url_of_detailed_explanation[pos]*/
 
     // 鎖定所有選項
     document
@@ -237,9 +234,31 @@ async function checkAnswer(btn) {
 
 
 function countScore(selected, rule){
-	// code here
-	let score = 80;
-    let flag = true;
+	if(selected.length==0){
+		return {
+			score: 0,
+			flag: false
+		}
+	}
+	
+	let score = 0 ;
+    let flag = true ;
+    let cnt = 0 ;
+	
+    for (const opt of rule.must || []) {
+        if (!selected.includes(opt)) cnt++;
+    }
+    for (const opt of rule.mustNot || []) {
+        if (selected.includes(opt)) cnt++;
+    }
+
+	if(cnt) flag=false ;
+
+	cnt = 5 - cnt ;                                                                                                           /*total_options[pos]*/
+
+	if(cnt==5) score = 2 ;
+	else if(cnt==4) score = 1.2 ;
+	else if(cnt==3) score = 0.4 ;
 
     return {
         score: score,
