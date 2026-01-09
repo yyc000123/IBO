@@ -73,21 +73,23 @@ for (let y = 2001; y <= 2025; y++) {                                            
     years.push(String(y));
 }
 
-const total_questions = [60] ;                                                                                              /*the numbers of the questions*/
+const total_questions = [80, 60] ;                                                                                          /*the numbers of the questions*/
 
-const total_options = [5] ;                                                                                                 /*the numbers of the options*/
+const total_options = [4, 5] ;                                                                                              /*the numbers of the options*/
 
-const multi_or_not = [1] ;                                                                                                  /*單選題0多選題1*/
+const multi_or_not = [0, 1] ;                                                                                               /*單選題0多選題1*/
 
-const urls = [
+const urls = [                                                                                                              /*the url of pdf*/
+	"https://tpmso.org/ibo/wp-content/uploads/2022/07/1999_1st_exam_A.pdf"
 	"https://tpmso.org/ibo/wp-content/uploads/2025/09/2025_1st_exam-.pdf"
-] ;                                      /*the url of pdf*/
+] ;
 
 const total_points = [120] ;                                                                                                /*the total scores of the exam*/
 
-const url_of_detailed_explanation = [
+const url_of_detailed_explanation = [                                                                                       /*the url of the detailed explanation*/
 	"https://tpmso.org/ibo/index.php/first-round-selection/"
-] ;                            /*the url of the detailed explanation*/
+	"https://tpmso.org/ibo/index.php/first-round-selection/"
+] ;
 
 let pos = 0 ;
 
