@@ -196,7 +196,7 @@ async function checkAnswer(btn) {
 		const res = await fetch("2025-answer.json");
     	const data = await res.json();
 
-		for(let q=1 ; q<=total_question[pos] ; q++){
+		for(let q=1 ; q<=total_questions[pos] ; q++){
 			const rule = data.multi[q] ;
 
 			if(!rule){
