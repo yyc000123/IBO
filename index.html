@@ -195,6 +195,12 @@ async function checkAnswer(btn) {
     	// code here
 		for(let q=1 ; q<=2 ; q++){                                                                                   /*total_questions[pos]*/
 			const rule = data.multi[q] ;
+
+			if(!rule){
+				console.log("${q} rule can not find") ;
+				continue ;
+			}
+				
 			const selected = Array.from(
 				document.querySelectorAll(`input[name="q_${q}"]:checked`)
 			).map(cb => cb.value);
