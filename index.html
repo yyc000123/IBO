@@ -245,7 +245,7 @@ async function checkAnswer(btn) {
 		console.error("Error when checking answer: ", err) ;
 	}
 
-    document.getElementById("result").innerHTML += `👍👍👍分數：${Math.round(score)} / ${total_points[pos]}👍👍👍<br><br>` ;
+    document.getElementById("result").innerHTML += `👍👍👍分數：${Math.round(score*10)/10} / ${total_points[pos]}👍👍👍<br><br>` ;
 
     document.getElementById("result").innerHTML += `
     <a href="${url_of_detailed_explanation[pos]}" target="_blank">詳解</a><br>`;
