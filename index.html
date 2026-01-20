@@ -237,7 +237,7 @@ async function checkAnswer(btn) {
 			if(temp.flag) document.getElementById("result").innerHTML += `第${q}題：正確✅<br>` ;
 			else document.getElementById("result").innerHTML += `第${q}題：錯誤❌<br>`;
 			document.getElementById("result").innerHTML += `正確答案：${rule.must.join("")}` ;
-			if(rule.optional.length!=0) document.getElementById("result").innerHTML += `(${rule.optional})` ;
+			if(rule.optional.length!=0) document.getElementById("result").innerHTML += `(${rule.optional.join("")})` ;
 			document.getElementById("result").innerHTML += `<br><br>` ;
 	
 		}
